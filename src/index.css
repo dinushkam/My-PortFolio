@@ -1,0 +1,529 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --blue-rgb: 237 245 255;
+  --green-rgb: 125 161 35;
+  --bg-0:#030712;       /* near-black */
+  --bg-1:#041b33;       /* deep ocean */
+  --bg-2:#063a66;       /* ocean mid */
+  --cyan:#7dd3fc;       /* soft cyan */
+  --gold:#f6c453;       /* gold accent */
+  --red:#ff3b5c;        /* red accent */
+  --card: rgba(255,255,255,.06);
+  --card2: rgba(255,255,255,.10);
+  --border: rgba(255,255,255,.14);
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.70);
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(125,211,252,.12), transparent 55%),
+              radial-gradient(900px 600px at 80% 20%, rgba(246,196,83,.10), transparent 55%),
+              radial-gradient(900px 600px at 60% 90%, rgba(255,59,92,.10), transparent 55%),
+              linear-gradient(180deg, var(--bg-0), var(--bg-1) 35%, var(--bg-2));
+  color: var(--text);
+  padding-top: 86px;
+  overflow-x: hidden;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding-top: 76px;
+  }
+}
+
+body:has(.card[data-color="blue"]:hover) {
+  background-color: rgb(var(--blue-rgb) / 25%);
+}
+
+body:has(.card[data-color="green"]:hover) {
+  background-color: rgb(var(--green-rgb) / 25%);
+}
+/* Navbar always fixed on top */
+.header{
+  position: fixed;
+  top: 10px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+/* Certificate Wall (masonry) */
+.wall{
+  column-count: 1;
+  column-gap: 18px;
+}
+
+@media (max-width: 640px){
+  .header{
+    top: 8px;
+    padding: 0 12px;
+  }
+}
+@media (min-width: 1100px){
+  .wall{ column-count: 3; }
+}
+
+/* Each tile must avoid breaking across columns */
+.wall-card{
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin: 0 0 18px;
+
+  border-radius: 18px;
+  padding: 18px;
+
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 16px 40px rgba(0,0,0,.25);
+}
+
+.wall-card-lg{
+  padding: 22px;
+  border-radius: 22px;
+}
+
+.wall-card-sm{
+  padding: 14px;
+  border-radius: 16px;
+}
+
+/* If you don't have these yet: */
+.btn-gold{
+  background: #628ee0;
+  color: #0b1220;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 800;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.22);
+}
+
+.btn-red{
+  background: #57ceec;
+  color: #fff;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 800;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,.22);
+}
+
+@layer utilities {
+  .max-container {
+    @apply max-w-5xl mx-auto sm:p-16 pb-12 !pt-[126px] px-8 min-h-[calc(100vh-80px)];
+  }
+
+  .head-text {
+    @apply sm:text-5xl text-3xl font-semibold sm:leading-snug font-poppins;
+  }
+
+  .subhead-text {
+    @apply font-semibold sm:text-3xl text-xl relative font-poppins;
+  }
+
+  .blue-gradient_text {
+    @apply bg-gradient-to-r from-[#00c6ff] to-[#0072ff] bg-clip-text text-transparent;
+  }
+
+  .input {
+    @apply bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mt-2.5 font-normal shadow-card;
+  }
+
+  .textarea {
+    @apply block p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-200 focus:ring-blue-500 focus:border-blue-500 mt-2.5 font-normal shadow-card;
+  }
+
+  .btn {
+    @apply text-white bg-gradient-to-r from-[#00c6ff] to-[#0072ff] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+  }
+
+  .header {
+  @apply w-full max-w-5xl mx-auto;
+}
+
+  .footer {
+    @apply max-w-5xl mx-auto sm:px-16 pb-6 px-8 flex flex-col gap-7;
+  }
+
+  .footer-container {
+    @apply flex flex-wrap gap-7 items-center justify-between;
+  }
+
+  .info-box {
+    @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-blue pt-4 pb-12 px-8;
+  }
+
+  .neo-btn {
+    @apply py-3 px-6 rounded-lg text-blue-500 text-center font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
+  }
+
+  .cta {
+    @apply w-full flex items-center md:flex-row flex-col sm:mt-16 mt-8 gap-7;
+  }
+
+  .cta-text {
+    @apply text-black-500 font-extrabold flex-1 text-3xl max-md:text-center;
+  }
+}
+
+.glassmorphism {
+  background: rgba(8, 116, 239, 0.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.logo {
+  border-radius: 8.889px;
+  background: #fff;
+  box-shadow: 0px 10px 35px -4px rgba(67, 83, 255, 0.15),
+    0px 1.5px 4px -1px rgba(67, 83, 255, 0.2);
+}
+
+.block-container {
+  position: relative;
+  transition: 250ms;
+  perspective: 500px;
+}
+
+.block-container .btn-back {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: inherit;
+  height: inherit;
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: bottom right;
+  transform: rotateZ(15deg);
+  will-change: transform;
+  box-shadow: 16px 0 40px #e4e4e4;
+}
+
+.block-container .btn-back-red {
+  background: linear-gradient(135deg, #ff4b1f -20%, #ff9068 120%);
+}
+
+.block-container .btn-back-green {
+  background: linear-gradient(135deg, #adfda2 -20%, #11d3f3 120%);
+}
+
+.block-container .btn-back-yellow {
+  background: linear-gradient(135deg, #f7971e -20%, #ffd200 120%);
+}
+
+.block-container .btn-back-blue {
+  background: linear-gradient(135deg, #0061ff -20%, #60efff 120%);
+}
+
+.block-container .btn-back-orange {
+  background: linear-gradient(135deg, #ff0f7b -20%, #f89b29 120%);
+}
+
+.block-container .btn-back-pink {
+  background: linear-gradient(135deg, #e81cff -20%, #40c9ff 120%);
+}
+
+.block-container .btn-back-black {
+  background: linear-gradient(135deg, #0a1647 -20%, #e4e7e4 120%);
+}
+
+.block-container .btn-front {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: inherit;
+  height: inherit;
+  background-color: #ffffff33;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transition: 250ms;
+  transform-style: preserve-3d;
+  transform-origin: top left;
+  overflow: hidden;
+}
+
+.block-container:hover > .btn-back {
+  transform: translateZ(20px) rotateZ(15deg) rotateX(-20deg) rotateY(-20deg);
+}
+
+.block-container:hover > .btn-front {
+  transform: translateZ(80px) translateY(-5px) rotateX(15deg) rotateY(15deg);
+}
+
+/* Neo Brutalism */
+.neo-brutalism-blue {
+  background: #2b77e7;
+  position: relative;
+  border-radius: 10px;
+  border: #2b77e7;
+  box-shadow: 0.6vmin 0.6vmin #336cc1, 1vmin 1vmin #0092db, 1vmin 1vmin #0092db,
+    0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db;
+}
+
+.neo-brutalism-white {
+  background: #fff;
+  border: #fff;
+  box-shadow: 0.6vmin 0.6vmin #fff, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ff,
+    0.65vmin 1vmin #d2e4ff, 1vmin 0.65vmin #d2e4ff;
+}
+
+/* Professional bottom-center info bubble (night-ocean theme, subtle gold/red) */
+.homeinfo-pro{
+  width: fit-content;
+  max-width: 520px;
+  padding: 12px 14px;
+  border-radius: 18px;
+
+  background:
+    radial-gradient(circle at 20% 25%, rgba(246,196,83,.18), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(125,211,252,.18), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+
+  border: 1px solid rgba(255,255,255,.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 45px rgba(0,0,0,.35);
+
+  color: rgba(255,255,255,.92);
+}
+
+.homeinfo-title{
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.homeinfo-text{
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: rgba(255,255,255,.82);
+}
+
+.homeinfo-tip{
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,.70);
+}
+
+/* Professional themed button */
+.homeinfo-btn{
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, rgba(246,196,83,.92), rgba(255,59,92,.55));
+  color: #06101f;
+  font-weight: 800;
+  text-decoration: none;
+
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 14px 30px rgba(0,0,0,.25);
+  transition: transform .12s ease, filter .12s ease;
+}
+.homeinfo-btn:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+
+/* CONTACT PAGE — Balanced (some dark accents, not too dark) */
+
+.contact-hero{
+  padding: 16px 18px;
+  border-radius: 14px;
+
+  /* light surface + dark accent border */
+  background: #88cbf5;
+  border: 1px solid #0c5892;
+  box-shadow: 0 14px 30px rgba(2, 18, 35, .12);
+}
+
+.contact-title{
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #071a2a;
+}
+
+.contact-subtitle{
+  margin-top: 6px;
+  color: rgba(7,26,42,.75);
+  max-width: 58ch;
+  line-height: 1.45;
+}
+
+.contact-card{
+  border-radius: 14px;
+  background: #57b5dd; /* very light blue */
+  border: 1px solid #9fd6ff;
+  box-shadow: 0 14px 30px rgba(2, 18, 35, .12);
+  padding: 18px;
+}
+
+/* small dark header strip (accent only) */
+.contact-canvas-head{
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  background: #041b33; /* dark ocean accent */
+}
+
+.contact-canvas-title{
+  color: #ffffff;
+  font-weight: 800;
+}
+.contact-canvas-sub{
+  margin-top: 2px;
+  color: rgba(255,255,255,.72);
+  font-size: 13px;
+}
+
+.contact-label{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: rgba(7,26,42,.85);
+  font-weight: 700;
+}
+
+.contact-input,
+.contact-textarea{
+  width: 100%;
+  border-radius: 12px;
+
+  background: #ffffff;
+  border: 1px solid rgba(19,140,226,.35);
+  color: #071a2a;
+
+  padding: 12px 12px;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.contact-input::placeholder,
+.contact-textarea::placeholder{
+  color: rgba(7,26,42,.45);
+}
+
+.contact-input:focus,
+.contact-textarea:focus{
+  border-color: rgba(246,196,83,.85);       /* gold focus */
+  box-shadow: 0 0 0 3px rgba(246,196,83,.25);
+}
+
+.contact-submit{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 100%;
+  border-radius: 999px;
+  padding: 12px 14px;
+
+  background: #f6c453; /* gold */
+  color: #0b1220;
+  font-weight: 900;
+
+  border: 1px solid rgba(0,0,0,.12);
+  box-shadow: 0 12px 26px rgba(246,196,83,.25);
+  transition: transform .12s ease, filter .12s ease;
+}
+
+.contact-submit:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+
+.contact-submit:disabled{
+  opacity: .7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.contact-submit-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #ff3b5c; /* red accent */
+}
+
+.contact-note{
+  margin-top: 6px;
+  font-size: 12px;
+  color: rgba(227, 70, 8, 0.65);
+  font-weight: 800;
+}
+
+.contact-canvas{
+  padding: 0;
+  overflow: hidden;
+}
+
+/* canvas area stays light so page doesn't feel dark */
+.contact-canvas-wrap{
+  width: 100%;
+  height: 420px;
+  background: #87d0f0;
+}
+
+@media (max-width: 768px){
+  .contact-canvas-wrap{ height: 360px; }
+  .contact-title{ font-size: 28px; }
+}
+
+.homeinfo-pro{
+  width: fit-content;
+  max-width: 520px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(246,196,83,.18), transparent 55%),
+    radial-gradient(circle at 80% 30%, rgba(125,211,252,.18), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+  border: 1px solid rgba(255,255,255,.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 45px rgba(0,0,0,.35);
+  color: rgba(255,255,255,.92);
+}
+
+@media (max-width: 640px){
+  .homeinfo-pro{
+    max-width: 100%;
+    padding: 10px 12px;
+    border-radius: 16px;
+  }
+
+  .homeinfo-title{
+    font-size: 14px;
+  }
+
+  .homeinfo-text{
+    font-size: 12px;
+  }
+
+  .homeinfo-tip{
+    font-size: 11px;
+  }
+
+  .homeinfo-btn{
+    width: 100%;
+    justify-content: center;
+    padding: 9px 12px;
+    font-size: 13px;
+  }
+}
