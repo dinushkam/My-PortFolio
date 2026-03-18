@@ -222,4 +222,20 @@ export const Certificates = [
     pdfUrl: "/certificates/IS.png",
     tag: "Ocean",
   },
+   {
+    title: "Docker Essential- A Developer Introduction to Docker",
+    org: "IBM",
+    year: "2026",
+    id: "03189fbbf47b4444befb9ccaab6bf7a6",
+    pdfUrl: "/certificates/Ibm.png",
+    tag: "Gold",
+  },
+  {
+    title: "Introduction to Kubernetes LFS158",
+    org: "The Linux Foundation",
+    year: "2026",
+    id: "LF-udaf5t9yb8",
+    pdfUrl: "/certificates/kuber.png",
+    tag: "Deep Blue",
+  },
 ];

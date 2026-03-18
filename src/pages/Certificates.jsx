@@ -106,8 +106,7 @@ export default function Certificates() {
         <div className="mb-10 text-center sm:mb-12">
           <h1 className="head-text text-white">Certificate Wall</h1>
           <p className="mx-auto mt-3 max-w-2xl leading-relaxed text-white/70">
-            A realistic wall of achievements presented with the same visual style
-            as the rest of the portfolio.
+            A realistic wall of  my achievements and certifications, showcasing my dedication to continuous learning and professional growth. 
           </p>
         </div>
 
