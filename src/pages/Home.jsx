@@ -1,32 +1,12 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
-import sakura from "../assets/sakura.mp3";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { HomeInfo, Loader } from "../components";
-import { soundoff, soundon } from "../assets/icons";
 import { Bird, Island, Plane, Sky, Pirate } from "../models";
 
 const Home = () => {
-  const audioRef = useRef(new Audio(sakura));
-
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
-  const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-  audioRef.current.volume = 0.4;
-  audioRef.current.loop = true;
-
-  useEffect(() => {
-    if (isPlayingMusic) {
-      audioRef.current.play().catch(() => {});
-    } else {
-      audioRef.current.pause();
-    }
-
-    return () => {
-      audioRef.current.pause();
-    };
-  }, [isPlayingMusic]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -172,19 +152,6 @@ const Home = () => {
         </Suspense>
       </Canvas>
 
-      <div className="absolute bottom-4 left-4 z-20">
-        <button
-          onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-          className="group rounded-2xl border border-white/15 bg-white/10 backdrop-blur-xl p-2.5 sm:p-3 shadow-[0_10px_40px_rgba(0,0,0,.35)] hover:bg-white/15 transition"
-          title="Toggle music"
-        >
-          <img
-            src={!isPlayingMusic ? soundoff : soundon}
-            alt="jukebox"
-            className="w-6 h-6 sm:w-8 sm:h-8 cursor-pointer object-contain group-hover:scale-105 transition"
-          />
-        </button>
-      </div>
     </section>
   );
 };

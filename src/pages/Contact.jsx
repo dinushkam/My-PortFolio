@@ -1,10 +1,9 @@
 import emailjs from "@emailjs/browser";
-import { Canvas } from "@react-three/fiber";
-import { Suspense, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
-import { Fox } from "../models";
+import { Envelope } from "../components/Envelope";
 import useAlert from "../hooks/useAlert";
-import { Alert, Loader } from "../components";
+import { Alert } from "../components";
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -237,11 +236,10 @@ const handleSubmit = (e) => {
                   Interactive assistant
                 </p>
                 <h2 className="mt-2 text-xl font-semibold text-white">
-                  Meet Fox
+                  Live Envelope
                 </h2>
                 <p className="mt-2 max-w-md text-sm leading-6 text-white/65">
-                  Fox reacts while you type and makes the contact section feel
-                  more alive and personal.
+                  The envelope reacts as you type, seals when you send, and celebrates on success.
                 </p>
               </div>
 
@@ -250,45 +248,17 @@ const handleSubmit = (e) => {
               </div>
             </div>
 
-            <div className="mt-5 overflow-hidden rounded-[24px] border border-white/10 bg-[linear-gradient(180deg,rgba(8,17,31,.95),rgba(4,12,24,.92))] pointer-events-none">
+            <div className="mt-5 overflow-hidden rounded-[24px] border border-white/10 bg-[linear-gradient(180deg,rgba(8,17,31,.95),rgba(4,12,24,.92))]">
               <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
                 <div className="flex items-center gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-rose-300/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-amber-300/80" />
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-300/80" />
                 </div>
-                <p className="text-xs text-white/45">3D contact companion</p>
+                <p className="text-xs text-white/45">Live envelope</p>
               </div>
-
-              <div className="relative h-[320px] overflow-hidden sm:h-[380px] lg:h-[460px]">
-                <Canvas
-                  className="absolute inset-0"
-                  camera={{
-                    position: [0, 0, 5],
-                    fov: 60,
-                    near: 0.1,
-                    far: 1000,
-                  }}
-                >
-                  <directionalLight position={[0, 0, 1]} intensity={2.5} />
-                  <ambientLight intensity={1} />
-                  <pointLight position={[5, 10, 0]} intensity={2} />
-                  <spotLight
-                    position={[10, 10, 10]}
-                    angle={0.15}
-                    penumbra={1}
-                    intensity={2}
-                  />
-
-                  <Suspense fallback={<Loader />}>
-                    <Fox
-                      currentAnimation={currentAnimation}
-                      position={[0.5, 0.35, 0]}
-                      rotation={[12.629, -0.6, 0]}
-                      scale={[0.5, 0.5, 0.5]}
-                    />
-                  </Suspense>
-                </Canvas>
+              <div className="relative h-[320px] overflow-hidden sm:h-[380px] lg:h-[460px] flex items-center justify-center">
+                <Envelope currentAnimation={currentAnimation} />
               </div>
             </div>
 
